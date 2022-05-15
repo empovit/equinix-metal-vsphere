@@ -1,4 +1,7 @@
 #!/bin/sh
+
+set -euxo pipefail
+
 # There is no bash on ESXi, only sh (but not a real sh, just busybox).
 # Determine the latest ESXi update here:
 # https://esxi-patches.v-front.de/
@@ -11,7 +14,7 @@ esxcli sched swap system set --datastore-enabled true
 esxcli sched swap system set --datastore-name datastore1
 
 # Update to your specified version of ESXi in the variables.tf file
-vim-cmd /hostsvc/maintenance_mode_enter
+vim-cmd /hostsvc/maintenance_mode_enter || true
 
 esxcli network firewall ruleset set -e true -r httpClient
 
@@ -21,6 +24,6 @@ esxcli software profile update -d https://hostupdate.vmware.com/software/VUM/PRO
 
 esxcli network firewall ruleset set -e false -r httpClient
 
-vim-cmd /hostsvc/maintenance_mode_exit
+vim-cmd /hostsvc/maintenance_mode_exit || true
 
 reboot
