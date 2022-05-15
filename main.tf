@@ -185,7 +185,7 @@ resource "null_resource" "upgrade_nodes" {
 
   provisioner "remote-exec" {
     inline = [
-      "sed -i '27d' /tmp/update_esxi.sh",
+      "sed -i '30d' /tmp/update_esxi.sh",
       "echo 'Running update script on remote host.'",
       "chmod +x /tmp/update_esxi.sh",
       "/tmp/update_esxi.sh"
