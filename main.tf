@@ -147,13 +147,14 @@ resource "metal_device" "esxi_hosts" {
   }
 }
 
+# TODO: Implement a health-check to tell when ESXi has finished booting
 resource "null_resource" "reboot_pre_upgrade" {
 
   depends_on = [metal_device.esxi_hosts]
   count      = var.update_esxi ? 1 : 0
 
   provisioner "local-exec" {
-    command = "sleep 250"
+    command = "sleep 300"
   }
 }
 
@@ -199,7 +200,7 @@ resource "null_resource" "reboot_post_upgrade" {
   count      = var.update_esxi ? 1 : 0
 
   provisioner "local-exec" {
-    command = "sleep 250"
+    command = "sleep 300"
   }
 }
 
