@@ -15,7 +15,7 @@ Here is an example for **macOS**:
 ```bash
 curl -LO https://releases.hashicorp.com/terraform/0.14.8/terraform_0.14.8_darwin_amd64.zip
 unzip terraform_0.14.8_darwin_amd64.zip
-chmod +x terraform 
+chmod +x terraform
 sudo mv terraform /usr/local/bin/
 ```
 
@@ -61,14 +61,14 @@ relative_path_to_gcs_key = "storage-reader-key.json"
 You will need to layout the object store structure to look like this:
 
 ```console
-Object Store Root: 
-    | 
-    |__ Bucket_Name 
-        | 
+Object Store Root:
+    |
+    |__ Bucket_Name
+        |
         |__ VMware-VCSA-all-7.0.3-18700403.iso
-        | 
+        |
         |__ vsanapiutils.py
-        | 
+        |
         |__ vsanmgmtObjects.py
 ```
 
@@ -111,7 +111,7 @@ For some servers on Equinix Metal, only an older version of ESXi is available (6
 ```bash
 cat <<EOF >>terraform.tfvars
 update_esxi = true
-esxi_update_filename = "ESXi-7.0U3d-19482537-standard"
+esxi_update_filename = "ESXi-7.0U3e-19898904-standard"
 EOF
 ```
 
@@ -122,7 +122,7 @@ A standalone Terraform script for ESXi upgrade is available [here](https://githu
 All there is left to do now is to deploy the cluster:
 
 ```bash
-terraform apply --auto-approve 
+terraform apply --auto-approve
 ```
 
 This should end with output similar to this:

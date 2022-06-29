@@ -299,5 +299,5 @@ variable "esxi_update_filename" {
   You can check all ESXi update versions/filenames here: https://esxi-patches.v-front.de/
   EOF
   type        = string
-  default     = "ESXi-7.0U3d-19482537-standard"
+  default     = "ESXi-7.0U3e-19898904-standard"
 }
