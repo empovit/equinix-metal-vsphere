@@ -1,4 +1,5 @@
 import ipaddress
+import logging
 import os
 import sys
 import subprocess
@@ -93,11 +94,16 @@ os.system(
 si = None
 for i in range(1, 30):
     try:
-        si = connect.SmartConnectNoSSL(
-            host=vcenter_ip, user=vcenter_username, pwd=sso_password, port=443
+        si = connect.SmartConnect(
+            host=vcenter_ip, user=vcenter_username, pwd=sso_password, port=443, disableSslCertValidation=True
         )
         break
     except Exception:
+        logging.exception(
+            "There was a connection Error to host: {}. Sleeping 10 seconds and trying again.".format(
+                vcenter_ip
+            )
+        )
         sleep(10)
 if si is None:
     print("Couldn't connect to vCenter!!!")

@@ -1,4 +1,5 @@
 import ipaddress
+import logging
 import packet as metal
 import optparse
 import sys
@@ -141,12 +142,12 @@ def connect_to_host(esx_host, esx_user, esx_pass):
         si = None
         try:
             print("Trying to connect to ESX Host . . .")
-            si = connect.SmartConnectNoSSL(
-                host=esx_host, user=esx_user, pwd=esx_pass, port=443
+            si = connect.SmartConnect(
+                host=esx_host, user=esx_user, pwd=esx_pass, port=443, disableSslCertValidation=True
             )
             break
         except Exception:
-            print(
+            logging.exception(
                 "There was a connection Error to host: {}. Sleeping 10 seconds and trying again.".format(
                     esx_host
                 )
